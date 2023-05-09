@@ -12,7 +12,7 @@ zval占用字节减少，由php5的48字节减少到16字节，减小内存占�
 
 ######                 ● **存储结构**
 
-php5的数组存储使用双向链表指针，非连续存储；php7使用连续存储空间存数组，提高命中率；
+php5的数组存储使用**双向链表**指针，非连续存储；php7使用**连续存储空间存数组**，提高命中率；
 
 ##### **强类型**
 
@@ -20,7 +20,7 @@ php5的数组存储使用双向链表指针，非连续存储；php7使用连续
 
 无类名，只用一次，如Laravel的migration类
 
-```
+```php
 new class(){
     public function __construct($prop)
     {
@@ -95,7 +95,7 @@ public function foo(Foo|Bar $input): int|float;
 
 ##### **字符串函数**
 
-只看字符串是否包含另一字符串时，可不使用strpos()，用新函数str_contains，检测字符串出现位置
+只看字符串是否包含另一字符串时，可不使用`strpos`，用新函数`str_contains`，检测字符串出现位置
 
 ```php
 str_contains();

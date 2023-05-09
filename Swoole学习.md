@@ -77,15 +77,13 @@ TaskWorker进程：处理异步任务。
 
 #### **Server运行模式**
 
-SWOOLE_PROCESS
+##### SWOOLE_PROCESS
 
 多tcp=>多worker，Master=>Worker，单个Worker挂，连接不中断
 
-SWOOLE_BASE
+##### SWOOLE_BASE
 
-#### **单tcp=>单Worker，无Master，单个Worker挂，连接中断**
-
-#### 
+单tcp=>单Worker，无Master，单个Worker挂，连接中断
 
 #### **Hyperf框架**
 
@@ -123,6 +121,10 @@ go co
 
 set get has等
 
+##### 配置
+
+类似于Laravel，数组和ENV形式
+
 ##### 注解
 
 作用：解耦
@@ -130,6 +132,73 @@ set get has等
 默认收集至`Hyperf\Di\Annotation\AnnotationCollector`中，但也可自定义注解收集器
 
 需继承自`Hyperf\Di\Annotation\AnnotationInterface`接口类
+
+##### 事件机制
+
+类似Laravel，观察者模式，定义监听器和监听器
+
+
+
+##### 路由
+
+###### 普通路由
+
+类似于Laravel，闭包或标准路由
+
+###### 注解路由
+
+自动路由
+
+```php
+#[AutoController] 注解
+// 在类前加上，自动访问对应路由，支持GET或POST
+
+
+#[Controller] 注解
+
+```
+
+自定义路由
+
+可单独支持GET，POST等
+
+```php 
+#[Controller]
+class UserController
+{
+    // Hyperf 会自动为此方法生成一个 /user/index 的路由，允许通过 GET 或 POST 方式请求
+    #[RequestMapping(path: "index", methods: "get,post")]
+    public function index(RequestInterface $request)
+    {
+        // 从请求中获得 id 参数
+        $id = $request->input('id', 1);
+        return (string)$id;
+    }
+}
+```
+
+##### 中间件
+
+中间件模式，`洋葱模型`，也类似于Laravel，分为全局中间件和路由中间件
+
+###### 注解定义
+
+在类或方法前定义
+
+```php 
+#[Middleware(FooMiddleware::class)]
+class IndexController
+{
+}
+```
+
+###### 执行顺序
+
+`全局中间件 -> 类级别中间件 -> 方法级别中间件`
+
+
+
+
 
 ##### 热启动
 
