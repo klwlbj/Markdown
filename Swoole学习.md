@@ -28,8 +28,6 @@
 
 如SQl查询等IO操作
 
-
-
 #### 阻塞操作
 
 - `sleep/usleep` 等
@@ -196,7 +194,15 @@ class IndexController
 
 `全局中间件 -> 类级别中间件 -> 方法级别中间件`
 
+##### 日志
 
+使用`use Monolog\Logger`驱动
+
+###### 安装
+
+```shell
+composer require hyperf/logger
+```
 
 
 
