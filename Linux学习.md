@@ -50,6 +50,7 @@ iostat #监控IO负载
 iftop #监控网络占用
     yum install iftop# 安装
 
+# 详见：https://www.cnblogs.com/redarmy/p/16876345.html
 export #查看全局变量
     export ADDPATH=/root/bin #配置环境变量
     # 查看环境变量的几种方式
@@ -153,9 +154,9 @@ ctrl r  #重做
 ```
 #### 组合命令
 ```shell
-ls;pwd    ls报错，仍可继续
-ls&& pwd   ls报错无法继续
-ls || pwd ls报错才继续
+ls;pwd    #ls报错，仍可继续pwd
+ls&& pwd   #ls报错无法继续
+ls || pwd #ls报错才继续
 
 换行命令
 用\
@@ -171,17 +172,17 @@ alias 显示所有命令别名
 
 | 表格                           | 功能                                                   |
 | ------------------------------ | ------------------------------------------------------ |
-| ctrl+u                         | 删除行头至光标处                                       |
-| ctrl+k                         | 删除光标处至行尾                                       |
-| ctrl+a                         | 光标移动到最前面                                       |
-| ctrl+e                         | 光标移动到最后面                                       |
+| <mark>ctrl+u</mark>            | 删除行头至光标处                                       |
+| <mark>ctrl+k</mark>            | 删除光标处至行尾                                       |
+| <mark>ctrl+a</mark>            | 光标移动到最前面                                       |
+| <mark>ctrl+e</mark>            | 光标移动到最后面                                       |
 | ctrl+左/右                     | 移动单词                                               |
 | ctrl+r                         | 查询历史命令                                           |
 | ctrl+_  (下划线)               | 撤销命令输入                                           |
 | ctrl+l                         | 相当于clear                                            |
-| ctrl+s                         | 停止输出，但仍执行，如ping时                           |
-| ctrl+z                         | 暂停执行任务，继续执行，使用fg(前台执行)和bg(后台执行) |
-| ctrl+c                         | 强行中断任务                                           |
+| <mark>ctrl+s</mark>            | 停止输出，但仍执行，如ping时                           |
+| <mark>ctrl+z</mark>            | 暂停执行任务，继续执行，使用fg(前台执行)和bg(后台执行) |
+| <mark>ctrl+c</mark>            | <mark>强行中断</mark>任务                              |
 | !!                             | bash中执行上一条命令，zsh中仅输出上一条命令，不执行    |
 | !hi                            | 找出hi开头的历史命令                                   |
 | r                              | zsh中执行上一条命令                                    |
