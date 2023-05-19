@@ -707,6 +707,44 @@ class Handler extends ExceptionHandler
 
 保存在`bootstrap/cache`目录，可删除
 
-```
+```shell
 php artisan cache:clear # 清除缓存 
 ```
+
+### 测试
+
+概念
+
+单元测试：针对单个方法
+
+功能测试：针对功能
+
+执行测试`php artisan test`
+
+定义环境变量`phpunit.xml`
+
+创建测试
+
+```shell
+php artisan make:test UserTest  # 创建功能测试
+php artisan make:test UserTest --unit # 创建单元测试
+```
+
+测试覆盖率
+
+```shell
+php artisan test --coverage
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
