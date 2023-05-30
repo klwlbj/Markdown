@@ -122,29 +122,173 @@ fmt.Printf("%s\n", s2)
 
 ##### 流程控制
 
-if
+不同于PHP，均无小括号
 
-goto
+###### if
 
-for
+###### goto
 
-switch
+###### for
+
+```go
+for k,v:=range map {
+    fmt.Println("map's key:",k)
+    fmt.Println("map's val:",v)
+}
+```
+
+###### switch
+
+自动break
 
 ##### 数据类型
 
 ###### 数组Array
 
-。。。
+```go
+var arr [10]int  // 声明了一个int类型的数组
+arr[0] = 42      // 数组下标是从0开始的
+arr[1] = 13      // 赋值操作
+
+b := [10]int{1, 2, 3} // 声明了一个长度为 10 的 int 数组，其中前三个元素初始化为 1、2、3，其它默认为 0
+
+c := [...]int{4, 5, 6} // 可以省略长度而采用 `...` 的方式，Go 会自动根据元素个数来计算长度
+```
+
+
 
 ###### 切片Slice
 
+<mark>数组的视图</mark>，因为原始数组不支持动态拓展大小
+
+引用类型，指向底层的数组，切片值改变，原数组也改变；
+
+len长度：切片现有的长度；
+
+cap容量：原数组容量；
+
+切入值到切片时，如果超过容量，会动态分配新的数组空间，也会影响到该数组其它切片；
+
+![img](D:\Markdown\assets\2.2.slice2.png)
+
+```go
+// 和声明 array 一样，只是少了长度
+var fslice []int
+
+
+// 声明一个含有 10 个元素元素类型为 byte 的数组
+var ar = [10]byte {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'}
+
+// 声明两个含有 byte 的 slice
+var a, b []byte
+
+// a 指向数组的第 3 个元素开始，并到第五个元素结束，
+a = ar[2:5]
+// 现在 a 含有的元素: ar[2]、ar[3]和ar[4]
+
+// b 是数组 ar 的另一个 slice
+b = ar[3:5]
+// b 的元素是：ar[3] 和 ar[4]
+```
+
+
+
+使用场景
+
+动态分配内存
+
+
+
 ###### 映射Map
 
+类似PHP的关联数组，Python中也有这一类型；
+
+无序性，每次遍历打印不同结果；
+
+也是引用类型；
+
+```go
+
+// 声明一个 key 是字符串，值为 int 的字典, 这种方式的声明需要在使用之前使用 make 初始化
+var numbers map[string]int
+// 另一种 map 的声明方式
+numbers := make(map[string]int)
+numbers["one"] = 1  // 赋值
+numbers["ten"] = 10 // 赋值
+numbers["three"] = 3
+
+fmt.Println("第三个数字是: ", numbers["three"]) // 读取数据
+// 打印出来如:第三个数字是: 3
+```
+
+
+
 ##### 函数
+
+可返回多个值
+
+###### defer
+
+```go
+func ReadWrite() bool {
+    file.Open("file")
+    defer file.Close()  //return时执行，也可定义多个defer，后进先出模式
+    if failureX {
+        return false
+    }
+    if failureY {
+        return false
+    }
+    return true
+}
+```
+
+###### Panic
+
+中断函数执行，定义的defer仍会执行 ；
+
+###### Recover
+
+捕获Panic的输入值，恢复正常执行；
+
+###### init
+
+所有包都有，第一次导入包时，执行；
+
+###### main
+
+main包专用，最后执行；
 
 ##### 面向对象
 
 仅支持封装，不支持继承和多态，面向接口，没有class，只有struct
+
+###### 结构体
+
+```go
+ type person struct {
+        name string
+        city string
+        age  int8
+    }
+```
+
+###### 方法
+
+```go
+func (r ReceiverType) funcName(parameters) (results)
+```
+
+###### Interface
+
+```go
+// 定义 interface
+type Men interface {
+    SayHi()
+    Sing(lyrics string)
+    Guzzle(beerStein string)
+}
+```
 
 ##### 指针
 
@@ -159,16 +303,6 @@ func main() {
     fmt.Printf("type of c:%T\n", c) // type of c:int
     fmt.Printf("value of c:%v\n", c) // value of c:10
 }
-```
-
-##### 结构体
-
-```go
- type person struct {
-        name string
-        city string
-        age  int8
-    }
 ```
 
 ##### 协程

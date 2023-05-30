@@ -168,7 +168,20 @@ ctrl r  #重做
     unrar e file.rar #解压rar
     unzip file.zip #解压zip
 ```
+#### 密钥相关
+
+```shell
+# 查看公钥
+cat ~/.ssh/id_rsa.pub
+# 重新生成密钥
+ssh-keygen
+
+```
+
+
+
 #### 组合命令
+
 ```shell
 ls;pwd    #ls报错，仍可继续pwd
 ls&& pwd   #ls报错无法继续
