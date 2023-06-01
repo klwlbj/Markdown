@@ -135,6 +135,17 @@ beanstalkd队列客户端
 
 读写Excel表单
 
+#### 本地Composer包开发
+
+```shell
+composer init
+composer config repositories.icbc path ../composer/icbc # 链接
+composer require klwlbj/icbc:dev-master # 引入
+
+```
+
+
+
 #### **引入**
 
 引入类库时，一般做法：
