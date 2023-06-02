@@ -23,6 +23,8 @@ composer.lock 支持版本控制
 vim ~/.composer/composer.json 修改全局配置，不一定存在
 composer config -l -g  查看全局配置
 
+
+composer dumpautoload   ??
 ```
 
 #### 额外命令
