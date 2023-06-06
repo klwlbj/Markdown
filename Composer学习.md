@@ -1,38 +1,44 @@
+#### 概念
+
+`composer.json` 是项目的声明文件，用于定义依赖包及其版本号等信息；
+
+`composer.lock` 是锁定文件，用于锁定当前项目所安装的依赖包的版本号及其依赖关系，保证了项目在不同环境下的一致性。
+
 #### 常用命令
 
 ```shell
-composer init 初始化生成composer.json文件
-composer install 如有 composer.lock 文件，直接安装，
-若没有，则从 composer.json 安装最新扩展包和依赖;初次安装会生成composer.lock文件
+composer init # 初始化生成composer.json文件
+composer install # 如有 composer.lock 文件，直接安装，
+若没有，则从 composer.json # 安装最新扩展包和依赖;初次安装会生成composer.lock文件
 
-composer update 按照 composer.json 指定的扩展包版本规则，把所有扩展包更新到最新版本，谨慎使用
-composer show 展示composer安装过的所有组件
-composer require new/package - 添加安装 new/package, 可以指定版本，如： composer require new/package ~2.5.
-    --with-all-dependencies   一并更新新装包的依赖，防止不同组件版本不匹配
-    --ignore-platform-reqs   忽略版本匹配
-    --dev 仅开发环境安装
-    -vvv 打印debug信息
+composer update # 按照 composer.json # 指定的扩展包版本规则，把所有扩展包更新到最新版本，谨慎使用
+composer show # 展示composer安装过的所有组件
+composer require new/package # 添加安装 new/package, 可以指定版本，如： composer require new/package ~2.5.
+    --with-all-dependencies   # 一并更新新装包的依赖，防止不同组件版本不匹配
+    --ignore-platform-reqs   # 忽略版本匹配
+    --dev # 仅开发环境安装
+    -vvv # 打印debug信息
 
-composer remove new/package 移除包
+composer remove new/package # 移除包
 
-composer global require new/package 全局安装
+composer global require new/package # 全局安装
 
-composer.json 只有几个核心包，虽然这些包会依赖其它包
-composer.lock 支持版本控制
+composer.json # 只有几个核心包，虽然这些包会依赖其它包
+composer.lock # 支持版本控制
 
-vim ~/.composer/composer.json 修改全局配置，不一定存在
-composer config -l -g  查看全局配置
+vim ~/.composer/composer.json # 修改全局配置，不一定存在
+composer config -l -g  # 查看全局配置
 
 
-composer dumpautoload   ??
+composer dumpautoload  # 更新composer的命名空间与文件夹映射关系
 ```
 
 #### 额外命令
 
 ```shell
-composer selfupdate 更新composer版本
-composer diagnose 诊断
-composer clear 清除缓存
+composer selfupdate # 更新composer版本
+composer diagnose # 诊断
+composer clear # 清除缓存
 ```
 
 详见：[Composer 命令行](https://docs.phpcomposer.com/03-cli.html)
@@ -44,12 +50,12 @@ composer clear 清除缓存
 代替PHP原生bcmath
 
 ```php
-整数，实例化用int是安全的，只要不超过最大值
+// 整数，实例化用int是安全的，只要不超过最大值
 BigInteger::of(123546);
 BigInteger::of('9999999999999999999999999999999999999999999');
-小数，浮点数实例化，用string类型更好
-BigDecimal::of(1.99999999999999999999);打印出2
-BigDecimal::of('1.99999999999999999999');打印出本来的小数
+// 小数，浮点数实例化，用string类型更好
+BigDecimal::of(1.99999999999999999999);// 打印出2
+BigDecimal::of('1.99999999999999999999');// 打印出本来的小数
 分数
 BigRational::of('2/3');
 BigRational::of('1.1'); // 11/10
@@ -70,7 +76,7 @@ BigDecimal::of(1)->dividedBy('8', 2); // RoundingNecessaryException
 BigDecimal::of(1)->dividedBy('8', 2, RoundingMode::HALF_DOWN); // 0.12
 BigDecimal::of(1)->dividedBy('8', 2, RoundingMode::HALF_UP); // 0.13
 
-有限小数
+// 有限小数
 echo BigDecimal::of(1)->exactlyDividedBy(256); // 0.00390625
 echo BigDecimal::of(1)->exactlyDividedBy(11); // RoundingNecessaryException
 ```
@@ -169,10 +175,10 @@ weather/
 ├── .editorconfig # 编辑器配置文件，比如缩进大小、换行模式等
 ├── .gitattributes # git 配置文件，可以设计导出时忽略文件等
 ├── .gitignore # git 忽略文件配置列表
-├── .php_cs # PHP-CS-Fixer 配置文件
+├── .php_cs.dist # PHP-CS-Fixer 配置文件
 ├── README.md  # 说明
 ├── composer.json #该拓展包的依赖关系
-├── phpunit.xml.dist
+├── phpunit.xml.dist # 测试相关配置
 ├── src  #源代码
 │   └── .gitkeep
 └── tests    #测试用例
@@ -180,3 +186,53 @@ weather/
 
 ```
 
+#### `composer.json`结构示例
+
+```json
+{
+  "name": "Josefa/package-test",
+  // 开源协议
+  "license": "MIT",
+  "repositories": [
+    {
+      // 引入外部包
+      "type": "path",
+      "url": "/Applications/MAMP/htdocs/package/my-vendor/package-1"
+    }
+  ],
+  // 自动加载规则
+  "autoload": {
+    "psr-4": {
+      "Josefa\\package-test\\": "src/"
+    },
+    "files": [
+      "src/Helpers.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Josefa",
+      "email": "josefa@daishujiankang.com"
+    }
+  ],
+  "require": {
+    "my-vendor/package-1": "*",
+    "php": "^8.0",
+    "laravel/framework": ">9.0"
+  },
+  "require-dev":{
+    "my-vendor/package-1": "*",
+  },
+  "minimum-stability": "dev"
+}
+```
+
+#### 包目录构建工具
+
+##### 全局安装
+
+`composer global require 'overtrue/package-builder' --prefer-source  `
+
+##### 构建
+
+`package-builder build ./abc`
