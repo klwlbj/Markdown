@@ -25,10 +25,10 @@ o1.11引入的新版模块管理方式，用于开启或关闭 Go 语言中的�
 在 ~/.bashrc 或者 ~/.zshrc中加入，启动终端时自动更改配置
 
 ```
-export GO111MODULE=on
+export GO111MODULE=auto
 export GOPROXY=https://goproxy.io
 # 替换成自己的目录
-export GOPATH="/Users/sks/go"
+export GOPATH="/mnt/d/project/golang"
 export PATH="$PATH:$GOPATH/bin"
 ```
 

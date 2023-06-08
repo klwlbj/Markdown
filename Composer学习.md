@@ -171,7 +171,7 @@ php artisan vendor:publish --provider="XXXProvider"
 #### 拓展包结构
 
 ```
-weather/
+abc/
 ├── .editorconfig # 编辑器配置文件，比如缩进大小、换行模式等
 ├── .gitattributes # git 配置文件，可以设计导出时忽略文件等
 ├── .gitignore # git 忽略文件配置列表
