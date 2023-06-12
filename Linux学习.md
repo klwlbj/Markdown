@@ -30,12 +30,10 @@ reboot
 
 ```
 
-
-
 #### 文件操作
 
 ```shell
- tail #默认查看后10行
+tail #默认查看后10行
     tail -f #动态显示文件内容，如日志
     tail -F #动态显示同名文件内容，即使vim保存时，把文件删了，又生成
     tail -n 20 文件名 #文件的最后20行
@@ -115,7 +113,7 @@ whereis #搜索文件名的文件
 which #会在PATH变量指定的路径中，搜索某个系统命令的位置，并且返回第一个搜索结果
 grep #分析信息，查找信息
 grep abc aaa.txt     #在aaa.txt文件中查找包含abc的内容
-ssh root@remoteserver -p 2222 #用户名连接到服务器什么端口
+
 ```
 #### xshell相关
 ```shell
@@ -130,7 +128,7 @@ yum install       #centos系统
 apt-get install   #ubuntu系统
 apk add           #apline系统
 ```
-#### 查看linux版本
+#### 查看Linux版本
 ```shell
 cat /etc/os-release  ## 查看发行版本
 # 查看内核版本，编译时间等
@@ -190,9 +188,10 @@ ctrl r  #重做
     unrar e file.rar #解压rar
     unzip file.zip #解压zip
 ```
-#### 密钥相关
+#### 登录相关
 
 ```shell
+ssh root@remoteserver -p 2222 #用户名连接到服务器什么端口
 # 查看公钥
 cat ~/.ssh/id_rsa.pub
 # 重新生成密钥
