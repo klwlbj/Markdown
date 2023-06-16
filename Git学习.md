@@ -50,7 +50,7 @@ git branch #显示本地分支
 	git branch -d [branch]  #删除本地分支
 	git branch -m [branch] #重命名当前分支
 	
-git diff
+git diff # 显示差异
 
 git push origin [branch] #推送本地分支到远端仓库
 	git push origin --delete [branch] #删除远程分支
@@ -72,6 +72,15 @@ git cherry-pick
 	git cherry-pick [commit hash] #挑选任意分支上的某个提交来合并
 	git cherry-pick [branch] #挑选指定分支上的最新提交至本分支
 git update-index --skip-worktree /path/to/file  # 忽略本地修改
+```
+
+全局配置
+
+```shell
+git config --global pull.rebase true
+
+git config --global rebase.autoStash true
+
 ```
 
 

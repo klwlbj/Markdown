@@ -514,6 +514,12 @@ Schema::dropIfExists('users');//删除表
 
 填充文件调用工厂类，生成测试数据
 
+### 命令行
+
+创建
+
+`php artisan make:command YourCommandName`
+
 ### 任务
 
 #### 创建
