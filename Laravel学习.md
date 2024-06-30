@@ -1,3 +1,20 @@
+### 安装
+
+指定安装laravel 9
+
+```shell 
+composer create-project --prefer-dist laravel/laravel blog 9
+```
+
+可能会出现php版本冲突，需在composer.json中添加：
+```
+"config": {
+        "platform-check": false
+    },
+```
+
+然后删除vendor和.lock文件，再执行`composer install`
+
 ### 请求周期
 
 - 进入入口文件`index.php`
@@ -660,7 +677,7 @@ Event(new TopicAchievementCollect($topics));
             'days'       => 14,
             'permission' => 0777,
         ],
- ]
+]
 ```
 
 #### 日志级别

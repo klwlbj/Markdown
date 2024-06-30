@@ -1,4 +1,4 @@
-万物皆文件
+    万物皆文件
 
 #### 基本命令
 
@@ -227,6 +227,11 @@ ctrl r  #重做
     tar -xZvf file.tar.Z   #解压tar.Z
     unrar e file.rar #解压rar
     unzip file.zip #解压zip
+ 
+    
+    gzip
+    bzip2
+    xz
 ```
 #### 登录相关
 
